@@ -1,35 +1,5 @@
-/*
-  Repeating Web client
-
- This sketch connects to a a web server and makes a request
- using a Wiznet Ethernet shield. You can use the Arduino Ethernet shield, or
- the Adafruit Ethernet shield, either one will work, as long as it's got
- a Wiznet Ethernet module on board.
-
- This example uses DNS, by assigning the Ethernet client with a MAC address,
- IP address, and DNS address.
-
- Circuit:
- * Ethernet shield attached to pins 10, 11, 12, 13
-
- created 19 Apr 2012
- by Tom Igoe
- modified 21 Jan 2014
- by Federico Vanzati
-
- http://www.arduino.cc/en/Tutorial/WebClientRepeating
- This code is in the public domain.
-
- */
-
 #include <SPI.h>
 #include <Ethernet.h>
-
-
-
-
-
-
 #include <Servo.h>
 
 
@@ -112,55 +82,32 @@ void setup() {
   digitalWrite(redPin, HIGH);
   digitalWrite(greenPin, LOW);
 
-
-
-
-
-
-
-
-
   
 }
 
+
+
+
+
+
+
 void loop() {
-  // if there's incoming data from the net connection.
-  // send it out the serial port.  This is for debugging
-  // purposes only:
-
-
-
-
-
-
-
-//   delay(300);
-   
-   
-//   Serial.print(int(millis()) - lastTimePressed > 5000);
-    
-   if (int(millis()) - lastTimePressed > 300) {
-    buttonState = digitalRead(buttonPin);
-    
-    if (buttonState == HIGH) {
-      if (buttonIsPressed == 0){
-        buttonIsPressed = 1;
-        lastTimePressed = millis();
-//        Serial.print("a");
-        toggleServo(0);
-      }
-    } else {
-//      Serial.print("B");
-      buttonIsPressed = 0;
-    }
-    
-   }
-
-
-
-
-
-
+  
+//   if (int(millis()) - lastTimePressed > 300) {
+//    buttonState = digitalRead(buttonPin);
+//    
+//    if (buttonState == HIGH) {
+//      if (buttonIsPressed == 0){
+//        buttonIsPressed = 1;
+//        lastTimePressed = millis();
+//        toggleServo(0);
+//        delay(5000);
+//      }
+//    } else {
+//      buttonIsPressed = 0;
+//    }
+//    
+//   }
 
 
 
@@ -197,6 +144,9 @@ void loop() {
 
 }
 
+
+
+
 void printContent(String printContent) {
   Serial.print(printContent);
 }
@@ -215,7 +165,7 @@ void httpRequest() {
 
   // if there's a successful connection:
   if (client.connect(server, 80)) {
-    Serial.println("connecting...");
+    // Serial.println("connecting...");
     // send the HTTP PUT request:
     client.println("GET /test.html HTTP/1.1");
     client.println("Host: rxian.me");
@@ -230,9 +180,6 @@ void httpRequest() {
     Serial.println("connection failed");
   }
 }
-
-
-
 
 
 
