@@ -13,8 +13,6 @@ class ScanQRCodeViewController: UIViewController, AVCaptureMetadataOutputObjects
     
     @IBOutlet weak var cancelButton: UIButton!
     
-    
-    
     @IBOutlet weak var foregroundImageView: UIImageView!
     @IBOutlet weak var messageLabel:UILabel!
     
@@ -29,15 +27,8 @@ class ScanQRCodeViewController: UIViewController, AVCaptureMetadataOutputObjects
     let supportedBarCodes = [AVMetadataObjectTypeQRCode]//, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
 
     
-    
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         
@@ -136,9 +127,16 @@ class ScanQRCodeViewController: UIViewController, AVCaptureMetadataOutputObjects
             if metadataObj.stringValue != nil {
                 messageLabel.text = metadataObj.stringValue
             }
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("PaymentTotalViewController")
+            
+            
+            
+            self.presentViewController(vc, animated: true, completion: nil)
+            
         }
+        
     }
-
-    
 }
 
