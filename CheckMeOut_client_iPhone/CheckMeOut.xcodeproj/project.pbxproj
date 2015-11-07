@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		29A854881BEE7DA900F22822 /* scan_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A854871BEE7DA900F22822 /* scan_background.png */; };
+		29A8548C1BEE92F300F22822 /* icon_app@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A8548B1BEE92F300F22822 /* icon_app@2.png */; };
+		29A8548E1BEE95A400F22822 /* PaymentTotalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A8548D1BEE95A400F22822 /* PaymentTotalViewController.swift */; };
+		29A854911BEE969E00F22822 /* add_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A8548F1BEE969E00F22822 /* add_icon.png */; };
+		29A854921BEE969E00F22822 /* done_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A854901BEE969E00F22822 /* done_icon.png */; };
+		29A854941BEE97E500F22822 /* green_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A854931BEE97E500F22822 /* green_background.png */; };
+		29A854971BEE9F1600F22822 /* cart_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A854951BEE9F1600F22822 /* cart_icon.png */; };
+		29A854981BEE9F1600F22822 /* history_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A854961BEE9F1600F22822 /* history_icon.png */; };
+		29A8549A1BEEA28D00F22822 /* yellow_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A854991BEEA28D00F22822 /* yellow_background.png */; };
+		29A8549C1BEEA33C00F22822 /* return_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A8549B1BEEA33C00F22822 /* return_icon.png */; };
+		29A8549E1BEEA3C200F22822 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A8549D1BEEA3C200F22822 /* HistoryViewController.swift */; };
+		29A854C01BEEB3F500F22822 /* PaymentTotalViewControllerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A854BF1BEEB3F500F22822 /* PaymentTotalViewControllerTableViewCell.swift */; };
 		29D642F61BEE696000853523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D642F51BEE696000853523 /* AppDelegate.swift */; };
 		29D642F81BEE696000853523 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D642F71BEE696000853523 /* ViewController.swift */; };
 		29D642FB1BEE696000853523 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29D642F91BEE696000853523 /* Main.storyboard */; };
@@ -16,15 +27,21 @@
 		29D643031BEE696000853523 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29D643011BEE696000853523 /* LaunchScreen.storyboard */; };
 		29D6430B1BEE69FE00853523 /* ScanQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D6430A1BEE69FE00853523 /* ScanQRCodeViewController.swift */; };
 		29D6431F1BEE7A0C00853523 /* home_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D6431E1BEE7A0C00853523 /* home_screen.png */; };
-		F50549261BEE990600700810 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F50549251BEE990600700810 /* WindowsAzureMobileServices.framework */; };
-		F505492B1BEE9B9C00700810 /* add_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F50549271BEE9B9C00700810 /* add_icon.png */; };
-		F505492C1BEE9B9C00700810 /* done_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F50549281BEE9B9C00700810 /* done_icon.png */; };
-		F505492D1BEE9B9C00700810 /* green_background.png in Resources */ = {isa = PBXBuildFile; fileRef = F50549291BEE9B9C00700810 /* green_background.png */; };
-		F505492E1BEE9B9C00700810 /* PaymentTotalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F505492A1BEE9B9C00700810 /* PaymentTotalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		29A854871BEE7DA900F22822 /* scan_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scan_background.png; sourceTree = "<group>"; };
+		29A8548B1BEE92F300F22822 /* icon_app@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_app@2.png"; sourceTree = "<group>"; };
+		29A8548D1BEE95A400F22822 /* PaymentTotalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentTotalViewController.swift; sourceTree = "<group>"; };
+		29A8548F1BEE969E00F22822 /* add_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_icon.png; sourceTree = "<group>"; };
+		29A854901BEE969E00F22822 /* done_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done_icon.png; sourceTree = "<group>"; };
+		29A854931BEE97E500F22822 /* green_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_background.png; sourceTree = "<group>"; };
+		29A854951BEE9F1600F22822 /* cart_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cart_icon.png; sourceTree = "<group>"; };
+		29A854961BEE9F1600F22822 /* history_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history_icon.png; sourceTree = "<group>"; };
+		29A854991BEEA28D00F22822 /* yellow_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_background.png; sourceTree = "<group>"; };
+		29A8549B1BEEA33C00F22822 /* return_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = return_icon.png; sourceTree = "<group>"; };
+		29A8549D1BEEA3C200F22822 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		29A854BF1BEEB3F500F22822 /* PaymentTotalViewControllerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentTotalViewControllerTableViewCell.swift; sourceTree = "<group>"; };
 		29D642F21BEE696000853523 /* CheckMeOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheckMeOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29D642F51BEE696000853523 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29D642F71BEE696000853523 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,13 +52,6 @@
 		29D643041BEE696000853523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29D6430A1BEE69FE00853523 /* ScanQRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanQRCodeViewController.swift; sourceTree = "<group>"; };
 		29D6431E1BEE7A0C00853523 /* home_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_screen.png; sourceTree = "<group>"; };
-		F50549221BEE964300700810 /* CheckMeOut-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CheckMeOut-Bridging-Header.h"; sourceTree = "<group>"; };
-		F50549251BEE990600700810 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
-		F50549271BEE9B9C00700810 /* add_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_icon.png; sourceTree = "<group>"; };
-		F50549281BEE9B9C00700810 /* done_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done_icon.png; sourceTree = "<group>"; };
-		F50549291BEE9B9C00700810 /* green_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_background.png; sourceTree = "<group>"; };
-		F505492A1BEE9B9C00700810 /* PaymentTotalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentTotalViewController.swift; sourceTree = "<group>"; };
-		F58CEBF11BEE9F6A002E1A12 /* WindowsAzureMobileServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowsAzureMobileServices.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +59,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F50549261BEE990600700810 /* WindowsAzureMobileServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +68,6 @@
 		29D642E91BEE696000853523 = {
 			isa = PBXGroup;
 			children = (
-				F50549251BEE990600700810 /* WindowsAzureMobileServices.framework */,
 				29D642F41BEE696000853523 /* CheckMeOut */,
 				29D642F31BEE696000853523 /* Products */,
 			);
@@ -80,16 +88,13 @@
 				29D642F51BEE696000853523 /* AppDelegate.swift */,
 				29D642F71BEE696000853523 /* ViewController.swift */,
 				29D6430A1BEE69FE00853523 /* ScanQRCodeViewController.swift */,
-				29D642F91BEE696000853523 /* Main.storyboard */,
-				F50549271BEE9B9C00700810 /* add_icon.png */,
-				F50549281BEE9B9C00700810 /* done_icon.png */,
-				F50549291BEE9B9C00700810 /* green_background.png */,
-				F505492A1BEE9B9C00700810 /* PaymentTotalViewController.swift */,
+				29A8548D1BEE95A400F22822 /* PaymentTotalViewController.swift */,
+				29A854BF1BEEB3F500F22822 /* PaymentTotalViewControllerTableViewCell.swift */,
 				29D642FF1BEE696000853523 /* Assets.xcassets */,
+				29D642F91BEE696000853523 /* Main.storyboard */,
+				29A8549D1BEEA3C200F22822 /* HistoryViewController.swift */,
 				29D643011BEE696000853523 /* LaunchScreen.storyboard */,
 				29D643041BEE696000853523 /* Info.plist */,
-				F50549221BEE964300700810 /* CheckMeOut-Bridging-Header.h */,
-				F58CEBF11BEE9F6A002E1A12 /* WindowsAzureMobileServices.h */,
 				29D642FC1BEE696000853523 /* CheckMeOut.xcdatamodeld */,
 			);
 			path = CheckMeOut;
@@ -98,6 +103,14 @@
 		29D6431D1BEE79F800853523 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				29A854991BEEA28D00F22822 /* yellow_background.png */,
+				29A8549B1BEEA33C00F22822 /* return_icon.png */,
+				29A854951BEE9F1600F22822 /* cart_icon.png */,
+				29A854961BEE9F1600F22822 /* history_icon.png */,
+				29A854931BEE97E500F22822 /* green_background.png */,
+				29A8548F1BEE969E00F22822 /* add_icon.png */,
+				29A854901BEE969E00F22822 /* done_icon.png */,
+				29A8548B1BEE92F300F22822 /* icon_app@2.png */,
 				29A854871BEE7DA900F22822 /* scan_background.png */,
 				29D6431E1BEE7A0C00853523 /* home_screen.png */,
 			);
@@ -162,14 +175,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29A854971BEE9F1600F22822 /* cart_icon.png in Resources */,
+				29A8549C1BEEA33C00F22822 /* return_icon.png in Resources */,
 				29D643031BEE696000853523 /* LaunchScreen.storyboard in Resources */,
 				29D643001BEE696000853523 /* Assets.xcassets in Resources */,
-				F505492B1BEE9B9C00700810 /* add_icon.png in Resources */,
+				29A854941BEE97E500F22822 /* green_background.png in Resources */,
 				29D6431F1BEE7A0C00853523 /* home_screen.png in Resources */,
 				29A854881BEE7DA900F22822 /* scan_background.png in Resources */,
+				29A8548C1BEE92F300F22822 /* icon_app@2.png in Resources */,
+				29A8549A1BEEA28D00F22822 /* yellow_background.png in Resources */,
+				29A854981BEE9F1600F22822 /* history_icon.png in Resources */,
 				29D642FB1BEE696000853523 /* Main.storyboard in Resources */,
-				F505492C1BEE9B9C00700810 /* done_icon.png in Resources */,
-				F505492D1BEE9B9C00700810 /* green_background.png in Resources */,
+				29A854921BEE969E00F22822 /* done_icon.png in Resources */,
+				29A854911BEE969E00F22822 /* add_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,9 +198,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F505492E1BEE9B9C00700810 /* PaymentTotalViewController.swift in Sources */,
+				29A8548E1BEE95A400F22822 /* PaymentTotalViewController.swift in Sources */,
+				29A854C01BEEB3F500F22822 /* PaymentTotalViewControllerTableViewCell.swift in Sources */,
 				29D642F81BEE696000853523 /* ViewController.swift in Sources */,
 				29D642FE1BEE696000853523 /* CheckMeOut.xcdatamodeld in Sources */,
+				29A8549E1BEEA3C200F22822 /* HistoryViewController.swift in Sources */,
 				29D642F61BEE696000853523 /* AppDelegate.swift in Sources */,
 				29D6430B1BEE69FE00853523 /* ScanQRCodeViewController.swift in Sources */,
 			);
@@ -295,17 +315,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/azure/test/iOS/ZumoE2ETestApp",
-					"$(PROJECT_DIR)",
-				);
 				INFOPLIST_FILE = CheckMeOut/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CheckMeOut",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = checkMeOut.CheckMeOut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -315,17 +326,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/azure/test/iOS/ZumoE2ETestApp",
-					"$(PROJECT_DIR)",
-				);
 				INFOPLIST_FILE = CheckMeOut/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CheckMeOut",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = checkMeOut.CheckMeOut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
