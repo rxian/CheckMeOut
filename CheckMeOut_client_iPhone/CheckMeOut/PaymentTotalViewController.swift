@@ -17,6 +17,9 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
+    @IBOutlet weak var totalLabel: UILabel!
+    
+    
     #if HAS_CARDIO
     var acceptCreditCards: Bool = true {
     didSet {
@@ -43,9 +46,7 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
     
     
     //////////////
-    let exp = [["Hoodie Pillow", "DigiStore", "$9.99"], ["LED Keychain", "DigiStore", "$9.55"]]
-    
-
+    var productsInCart = NSMutableArray()
     
     var groupList = [String]()
     
@@ -62,8 +63,31 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exp.count
+        return productsInCart.count
     }
+    
+    
+    
+    
+    
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            productsInCart.removeObjectAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            totalLabel.text = String(format:"$%@",calculateTotal(productsInCart))
+            
+            let cartData = NSKeyedArchiver.archivedDataWithRootObject(productsInCart)
+            NSUserDefaults.standardUserDefaults().setObject(cartData, forKey: "cart")
+
+        }
+    }
+    
+    
+    
+    
+    
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "PaymentTotalViewControllerTableViewCell"
@@ -72,15 +96,15 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
         
         
         ///////////////
-        let textexp = exp[indexPath.row]
+        let textexp = productsInCart[indexPath.row]
         
         
         
         
         
-        cell.productName.text = textexp[0]
-        cell.productPrice.text = textexp[2]
-        cell.storeName.text = textexp[1]
+        cell.productName.text = String(textexp[0])
+        cell.productPrice.text = String(format:"$%@",textexp[2])
+        cell.storeName.text = String(textexp[1])
         
         return cell
     }
@@ -95,6 +119,17 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         
         
+        let cartData = NSUserDefaults.standardUserDefaults().objectForKey("cart") as? NSData
+        
+        if let cartData = cartData {
+            let cartArray = NSKeyedUnarchiver.unarchiveObjectWithData(cartData) as? NSArray
+            productsInCart = NSMutableArray(array: cartArray!)
+        }
+        
+        
+        
+        
+        
         tableView.delegate = self
         tableView.dataSource = self
         self.tableView.reloadData()
@@ -102,12 +137,14 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
         
         
         payPalConfig.acceptCreditCards = acceptCreditCards;
-        payPalConfig.merchantName = "Awesome Shirts, Inc."
+        payPalConfig.merchantName = "DigiStore LLC"
         payPalConfig.merchantPrivacyPolicyURL = NSURL(string: "https://www.paypal.com/webapps/mpp/ua/privacy-full")
         payPalConfig.merchantUserAgreementURL = NSURL(string: "https://www.paypal.com/webapps/mpp/ua/useragreement-full")
         payPalConfig.languageOrLocale = NSLocale.preferredLanguages()[0]
         payPalConfig.payPalShippingAddressOption = .PayPal;
         
+        
+        totalLabel.text = String(format:"$%@",calculateTotal(productsInCart))
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -133,7 +170,7 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
     
     
     
-    
+
     
     
     
@@ -166,6 +203,46 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
     
     
     
+    func calculateTotal(productArray: NSArray) -> NSDecimalNumber {
+        var sum = NSDecimalNumber(string: "0.00")
+        if (productArray.count != 0) {
+            for index in 0...productArray.count-1 {
+                sum = sum.decimalNumberByAdding(NSDecimalNumber(string: String(productArray[index][2])))
+            }
+        }
+        return sum
+        
+                
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -176,33 +253,20 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
     
     
     @IBAction func buyClothingAction(sender: AnyObject) {
-        // Remove our last completed payment, just for demo purposes.
-        resultText = ""
         
-        // Note: For purposes of illustration, this example shows a payment that includes
-        //       both payment details (subtotal, shipping, tax) and multiple items.
-        //       You would only specify these if appropriate to your situation.
-        //       Otherwise, you can leave payment.items and/or payment.paymentDetails nil,
-        //       and simply set payment.amount to your total charge.
+        let subtotal = calculateTotal(productsInCart)
         
-        // Optional: include multiple items
-        let item1 = PayPalItem(name: "Old jeans with holes", withQuantity: 2, withPrice: NSDecimalNumber(string: "84.99"), withCurrency: "USD", withSku: "Hip-0037")
-        let item2 = PayPalItem(name: "Free rainbow patch", withQuantity: 1, withPrice: NSDecimalNumber(string: "0.00"), withCurrency: "USD", withSku: "Hip-00066")
-        let item3 = PayPalItem(name: "Long-sleeve plaid shirt (mustache not included)", withQuantity: 1, withPrice: NSDecimalNumber(string: "37.99"), withCurrency: "USD", withSku: "Hip-00291")
-        
-        let items = [item1, item2, item3]
-        let subtotal = PayPalItem.totalPriceForItems(items)
         
         // Optional: include payment details
-        let shipping = NSDecimalNumber(string: "5.99")
-        let tax = NSDecimalNumber(string: "2.50")
+        let shipping = NSDecimalNumber(string: "0")
+        let tax = NSDecimalNumber(string: "0")
         let paymentDetails = PayPalPaymentDetails(subtotal: subtotal, withShipping: shipping, withTax: tax)
         
         let total = subtotal.decimalNumberByAdding(shipping).decimalNumberByAdding(tax)
         
-        let payment = PayPalPayment(amount: total, currencyCode: "USD", shortDescription: "Hipster Clothing", intent: .Sale)
         
-        payment.items = items
+        let payment = PayPalPayment(amount: total, currencyCode: "USD", shortDescription: "DigiStore LLC Transaction", intent: .Sale)
+        
         payment.paymentDetails = paymentDetails
         
         if (payment.processable) {
@@ -210,30 +274,7 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
             presentViewController(paymentViewController, animated: true, completion: nil)
             //////////////////////////////
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+      
             
         }
         else {

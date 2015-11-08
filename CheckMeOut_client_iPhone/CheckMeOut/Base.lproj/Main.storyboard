@@ -198,7 +198,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$19.57" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9Q-G5-j77">
-                                <rect key="frame" x="188" y="37" width="172" height="58"/>
+                                <rect key="frame" x="76" y="37" width="284" height="58"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="52"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -211,6 +211,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="tableView" destination="0Pz-TI-B5a" id="N3B-gg-WrU"/>
+                        <outlet property="totalLabel" destination="U9Q-G5-j77" id="BZO-cn-Pbx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mzq-rm-e3F" userLabel="First Responder" sceneMemberID="firstResponder"/>

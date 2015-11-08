@@ -20,18 +20,18 @@ class ScanQRCodeViewController: UIViewController, AVCaptureMetadataOutputObjects
     
     
     
-    
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
-    
+    var timer = NSTimer()
+
     // Added to support different barcodes
     let supportedBarCodes = [AVMetadataObjectTypeQRCode]//, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
 
     
     
     
-    
+    var detected = false
     
     
     override func viewDidLoad() {
@@ -107,6 +107,12 @@ class ScanQRCodeViewController: UIViewController, AVCaptureMetadataOutputObjects
     }
     
     
+    
+    func timerDidFire() {
+        detected = false
+        timer.invalidate()
+        
+    }
 
     
     
@@ -127,9 +133,21 @@ class ScanQRCodeViewController: UIViewController, AVCaptureMetadataOutputObjects
         // Here we use filter method to check if the type of metadataObj is supported
         // Instead of hardcoding the AVMetadataObjectTypeQRCode, we check if the type
         // can be found in the array of supported bar codes.
-        if supportedBarCodes.contains(metadataObj.type) {
+        if supportedBarCodes.contains(metadataObj.type) && self.view.hidden != true {
             //        if metadataObj.type == AVMetadataObjectTypeQRCode {
             // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
+            
+            
+            
+            if let viewControllers = navigationController?.viewControllers {
+                for viewController in viewControllers {
+                    // some process
+                    if viewController.isKindOfClass(ScanQRCodeViewController) {
+                    }
+                } 
+            }
+            
+            
             let barCodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObj)
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
@@ -138,17 +156,45 @@ class ScanQRCodeViewController: UIViewController, AVCaptureMetadataOutputObjects
             }
             
             
+
             
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("PaymentTotalViewController")
-            
-            
-      
-            self.presentViewController(vc, animated: true, completion: nil)
-            
-            
-            
+            if !detected {
+                detected = true
+                timer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "timerDidFire", userInfo: nil, repeats: false)
+                
+                var productsInCart = NSMutableArray()
+                
+                let cartData = NSUserDefaults.standardUserDefaults().objectForKey("cart") as? NSData
+                
+                if let cartData = cartData {
+                    let cartArray = NSKeyedUnarchiver.unarchiveObjectWithData(cartData) as? NSArray
+                    productsInCart = NSMutableArray(array: cartArray!)
+                }
+                
+                productsInCart.addObject(["LED Keychain", "DigiStore", "4.99"])
+                
+                
+                NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(productsInCart), forKey: "cart")
+                
+                
+                
+                
+                
+                
+                
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("PaymentTotalViewController")
+                
+                
+          
+                self.showViewController(vc, sender: nil)
+                
+
+                
+               
+                
+            }
             
             
             
