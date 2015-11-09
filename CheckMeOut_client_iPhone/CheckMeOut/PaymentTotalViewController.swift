@@ -274,7 +274,15 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
             presentViewController(paymentViewController, animated: true, completion: nil)
             //////////////////////////////
             
-      
+            
+            productsInCart = []
+            
+            let cartData = NSKeyedArchiver.archivedDataWithRootObject(productsInCart)
+            NSUserDefaults.standardUserDefaults().setObject(cartData, forKey: "cart")
+            
+            self.tableView.reloadData()
+            totalLabel.text = String(format:"$%@",calculateTotal(productsInCart))
+
             
         }
         else {
