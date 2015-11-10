@@ -18,9 +18,9 @@ This repository contains the source code for implementing the Check Me Out proje
 
 *~/checkmeout_edison/*  contains the files for programming the Edison board
 
-*~/::presentation_version/*  contains all active files for the final presentation
+*~/:: presentation_version/*  contains all active files for the final presentation
 
-*~/::development_version/*  contains all files created during the development
+*~/:: development_version/*  contains all files created during the development
 
 ---
 
