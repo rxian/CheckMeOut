@@ -14,25 +14,25 @@ This repository contains the source code for implementing the Check Me Out proje
 
 #### Files
 
-*~./CheckMeOut_client_iPhone/*  contains the files for the iPhone client app
+*~/CheckMeOut_client_iPhone/*  contains the files for the iPhone client app
 
-*~./checkmeout_edison/*  contains the files for programming the Edison board
+*~/checkmeout_edison/*  contains the files for programming the Edison board
 
-*~./::presentation_version/*  contains all active files for the final presentation
+*~/::presentation_version/*  contains all active files for the final presentation
 
-*~./::development_version/*  contains all files created during the development
+*~/::development_version/*  contains all files created during the development
 
 ---
 
 #### iPhone Client APP UI Plan
 
-![](./CheckMeOut_client_iPhone/CheckMeOut_UI_Plan.png =1400x461)
+![](/CheckMeOut_client_iPhone/CheckMeOut_UI_Plan.png =1400x461)
 
 ---
 
 #### Schematics
 
-![](./checkmeout_edison/CheckMeOut_edison_schematics.png =1400x934)
+![](/checkmeout_edison/CheckMeOut_edison_schematics.png =1400x934)
 
 ---
 
