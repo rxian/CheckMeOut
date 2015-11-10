@@ -26,18 +26,20 @@ This repository contains the source code for implementing the Check Me Out proje
 
 #### iPhone Client APP UI Plan
 
-![](/CheckMeOut_client_iPhone/CheckMeOut_UI_Plan.png =1400x461)
+![](https://raw.githubusercontent.com/sesowo/CheckMeOut/master/CheckMeOut_client_iPhone/CheckMeOut_UI_Plan.png=1400x461)
 
 ---
 
 #### Schematics
 
-![](/checkmeout_edison/CheckMeOut_edison_schematics.png =1400x934)
+![](https://raw.githubusercontent.com/sesowo/CheckMeOut/master/checkmeout_edison/CheckMeOut_edison_schematics.png=1400x934)
 
 ---
 
 #### Credits
 
 R. Xian (xianr AT rpi DOT edu)
+
 S. Chen (chens16 AT rpi DOT edu)
+
 E. Zhang (zhange AT rpi DOT edu)
