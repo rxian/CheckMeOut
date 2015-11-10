@@ -2,8 +2,7 @@
 //  AppDelegate.swift
 //  CheckMeOut
 //
-//  Created by Ruicheng Xian on 11/7/15.
-//  Copyright © 2015 CheckMeOut. All rights reserved.
+//  Created by R. Xian on 11/7/15.
 //
 
 import UIKit

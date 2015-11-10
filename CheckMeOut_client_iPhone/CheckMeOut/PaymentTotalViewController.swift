@@ -2,8 +2,10 @@
 //  PaymentTotalViewController.swift
 //  CheckMeOut
 //
-//  Created by Ruicheng Xian on 11/7/15.
-//  Copyright © 2015 CheckMeOut. All rights reserved.
+//  Created by R. Xian on 11/7/15.
+//
+//  References:
+//  * PayPal-iOS-SDK-Sample-App, (c) 2014, PayPal
 //
 
 import UIKit
@@ -18,8 +20,8 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBOutlet weak var totalLabel: UILabel!
-    
-    
+    @IBOutlet weak var tableView: UITableView!
+
     #if HAS_CARDIO
     var acceptCreditCards: Bool = true {
     didSet {
@@ -37,23 +39,10 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
     var resultText = "" // empty
     var payPalConfig = PayPalConfiguration() // default
     
-    
-    
-    
-    
-    
-    
-    
-    
-    //////////////
     var productsInCart = NSMutableArray()
-    
     var groupList = [String]()
     
     
-    
-    
-    @IBOutlet weak var tableView: UITableView!
     
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -61,14 +50,9 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return productsInCart.count
     }
-    
-    
-    
-    
     
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -84,23 +68,12 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     
-    
-    
-    
-    
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "PaymentTotalViewControllerTableViewCell"
         
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! PaymentTotalViewControllerTableViewCell
-        
-        
-        ///////////////
+
         let textexp = productsInCart[indexPath.row]
-        
-        
-        
-        
         
         cell.productName.text = String(textexp[0])
         cell.productPrice.text = String(format:"$%@",textexp[2])
@@ -109,32 +82,24 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
     }
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         let cartData = NSUserDefaults.standardUserDefaults().objectForKey("cart") as? NSData
-        
         if let cartData = cartData {
             let cartArray = NSKeyedUnarchiver.unarchiveObjectWithData(cartData) as? NSArray
             productsInCart = NSMutableArray(array: cartArray!)
         }
         
-        
-        
-        
-        
         tableView.delegate = self
         tableView.dataSource = self
         self.tableView.reloadData()
-        
-        
         
         payPalConfig.acceptCreditCards = acceptCreditCards;
         payPalConfig.merchantName = "DigiStore LLC"
@@ -143,15 +108,11 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
         payPalConfig.languageOrLocale = NSLocale.preferredLanguages()[0]
         payPalConfig.payPalShippingAddressOption = .PayPal;
         
-        
         totalLabel.text = String(format:"$%@",calculateTotal(productsInCart))
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
@@ -160,24 +121,13 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         PayPalMobile.preconnectWithEnvironment(environment)
     }
     
     
-    
-    
-    
-
-    
-    
-    
-    
-    
     // PayPalPaymentDelegate
-    
     func payPalPaymentDidCancel(paymentViewController: PayPalPaymentViewController!) {
         print("PayPal Payment Cancelled")
         resultText = ""
@@ -185,6 +135,9 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func payPalPaymentViewController(paymentViewController: PayPalPaymentViewController!, didCompletePayment completedPayment: PayPalPayment!) {
+        
+        // WARNING: implement your method when payment is complete
+
         print("PayPal Payment Success !")
         paymentViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
             // send completed confirmaion to your server
@@ -195,14 +148,6 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
     func calculateTotal(productArray: NSArray) -> NSDecimalNumber {
         var sum = NSDecimalNumber(string: "0.00")
         if (productArray.count != 0) {
@@ -211,51 +156,12 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
         return sum
-        
-                
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     @IBAction func buyClothingAction(sender: AnyObject) {
         
         let subtotal = calculateTotal(productsInCart)
-        
         
         // Optional: include payment details
         let shipping = NSDecimalNumber(string: "0")
@@ -264,7 +170,6 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
         
         let total = subtotal.decimalNumberByAdding(shipping).decimalNumberByAdding(tax)
         
-        
         let payment = PayPalPayment(amount: total, currencyCode: "USD", shortDescription: "DigiStore LLC Transaction", intent: .Sale)
         
         payment.paymentDetails = paymentDetails
@@ -272,8 +177,6 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
         if (payment.processable) {
             let paymentViewController = PayPalPaymentViewController(payment: payment, configuration: payPalConfig, delegate: self)
             presentViewController(paymentViewController, animated: true, completion: nil)
-            //////////////////////////////
-            
             
             productsInCart = []
             
@@ -282,7 +185,6 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
             
             self.tableView.reloadData()
             totalLabel.text = String(format:"$%@",calculateTotal(productsInCart))
-
             
         }
         else {
@@ -292,12 +194,5 @@ class PaymentTotalViewController: UIViewController, UITableViewDelegate, UITable
             // to handle that here.
             print("Payment not processalbe: \(payment)")
         }
-        
     }
-    
-    
-    
-    
-    
 }
-

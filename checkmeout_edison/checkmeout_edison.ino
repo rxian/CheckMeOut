@@ -1,101 +1,97 @@
+/*
+  CheckMeOut Edison board physical mechanism implementation
+
+  This is the program written for the Edison board for implementing the CheckMeOut project on the merchant's side.
+
+  Circuit:
+  * Schematics provided on Github - https://github.com/sesowo/CheckMeOut
+  * RGB LED
+  * RC Servo
+  * Button
+  * 1k Ohm Resistors
+  * Intel Edison Board
+
+  Reference:
+  * Arduino Web Client Sample Code - https://www.arduino.cc/en/Tutorial/WebClient
+  * Arduino Sweep Sample Code - https://www.arduino.cc/en/Tutorial/Sweep
+
+  created 6 Nov 2015
+  by R. Xian
+  modified 10 Nov 2015
+  by R. Xian
+
+*/
+
+
+
+
+// ##### PROGRAM MARK: importation
+// <!> uses Edison library
 #include <SPI.h>
 #include <Ethernet.h>
 #include <Servo.h>
 
 
-Servo myservo;
-int pos = 90;    // variable to store the servo position
 
+
+// ##### PROGRAM MARK: initialization
+// initialize serno
+Servo myservo;  // at PWM pin 9
+int pos = 90;
+
+// initialize button for testing and debugging
 const int buttonPin = 2;
 bool buttonIsPressed = 0;
 unsigned long lastTimePressed;
-int buttonState = 0;  
+int buttonState = 0;
 
+// initialize LED for status indication
 int redPin = 5;
 int greenPin = 6;
 
-
-
-
-
-
-
-
-
-
-
-// assign a MAC address for the ethernet controller.
-// fill in your address here:
-byte mac[] = {
-  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
-};
-// fill in an available IP address on your network here,
-// for manual configuration:
+// initialize basic network information
+byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};
 IPAddress ip(192, 168, 1, 177);
-
-// fill in your Domain Name Server address here:
 IPAddress myDns(1, 1, 1, 1);
 
-// initialize the library instance:
+// initialize web client
 EthernetClient client;
-
-char server[] = "rxian.me";
-//IPAddress server(64,131,82,241);
-
-unsigned long lastConnectionTime = 0;             // last time you connected to the server, in milliseconds
-const unsigned long postingInterval = 3000; // delay between updates, in milliseconds
-// the "L" is needed to use long type numbers
-
-
+char server[] = "yourWebDatabase.org"; // <!> specify the url for retriving data for the stock information
+unsigned long lastConnectionTime = 0;
+const unsigned long postingInterval = 3000;
 bool recordData = 0;
 String content = "";
 
 
 
+
+// ##### PROGRAM MARK: functions
 void setup() {
-  // start serial port:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;
   }
-
-  // give the ethernet module time to boot up:
   delay(1000);
-  // start the Ethernet connection using a fixed IP address and DNS server:
   Ethernet.begin(mac, ip, myDns);
-  // print the Ethernet board/shield's IP address:
-  Serial.print("My IP address: ");
-  Serial.println(Ethernet.localIP());
+  // Serial.print("My IP address: ");
+  // Serial.println(Ethernet.localIP());
 
-
-
-
-  Serial.begin(9600);
-  pinMode(13, OUTPUT);
   pinMode(buttonPin, INPUT);
-  myservo.attach(9);
   lastTimePressed = 0;
+
+  myservo.attach(9);
 
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
-
   digitalWrite(redPin, HIGH);
   digitalWrite(greenPin, LOW);
-
-  
 }
 
 
-
-
-
-
-
 void loop() {
-  
+// button implementation
 //   if (int(millis()) - lastTimePressed > 300) {
 //    buttonState = digitalRead(buttonPin);
-//    
 //    if (buttonState == HIGH) {
 //      if (buttonIsPressed == 0){
 //        buttonIsPressed = 1;
@@ -106,16 +102,11 @@ void loop() {
 //    } else {
 //      buttonIsPressed = 0;
 //    }
-//    
 //   }
 
-
-
-
-
+  // web client receive data
   char character;
-  
-  if (client.available()) {
+  if (client.available()) { // <!> specify the criteria for unlocking or locking the stock
     character = client.read();
     if (character == '<') {
       recordData = 1;
@@ -127,24 +118,19 @@ void loop() {
       } else {
         toggleServo(2);
       }
-      printContent(content);
+      // printContent(content);
     } else {
       if (recordData == 1) {
         content.concat(character);
       }
     }
-//    Serial.write(c);
   }
-  
-  // if ten seconds have passed since your last connection,
-  // then connect again and send data:
+
+  // web client send request
   if (millis() - lastConnectionTime > postingInterval) {
     httpRequest();
   }
-
 }
-
-
 
 
 void printContent(String printContent) {
@@ -152,35 +138,14 @@ void printContent(String printContent) {
 }
 
 
-
-
-
-
-
-// this method makes a HTTP connection to the server:
 void httpRequest() {
-  // close any connection before send a new request.
-  // This will free the socket on the WiFi shield
   client.stop();
-
-  // if there's a successful connection:
   if (client.connect(server, 80)) {
-    // Serial.println("connecting...");
-    // send the HTTP PUT request:
-    client.println("GET /test.html HTTP/1.1");
-    client.println("Host: rxian.me");
-    client.println("User-Agent: arduino-ethernet");
-    client.println("Connection: close");
-    client.println();
-
-    // note the time that the connection was made:
     lastConnectionTime = millis();
   } else {
-    // if you couldn't make a connection:
     Serial.println("connection failed");
   }
 }
-
 
 
 void toggleServo(int cmd) {
@@ -204,5 +169,4 @@ void toggleServo(int cmd) {
       pos = 90;
   }
   myservo.write(pos);
-
 }
