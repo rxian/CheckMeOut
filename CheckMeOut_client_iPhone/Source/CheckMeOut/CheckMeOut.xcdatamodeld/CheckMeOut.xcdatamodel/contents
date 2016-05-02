@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Automatic">
+    <entity name="Cart" representedClassName=".Cart" syncable="YES">
+        <attribute name="merchant" attributeType="String" syncable="YES"/>
+        <attribute name="price" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="product" attributeType="String" syncable="YES"/>
+        <attribute name="productIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="History" representedClassName=".History" syncable="YES">
+        <attribute name="merchant" attributeType="String" syncable="YES"/>
+        <attribute name="total" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Cart" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="History" positionX="-54" positionY="18" width="128" height="75"/>
+    </elements>
+</model>
